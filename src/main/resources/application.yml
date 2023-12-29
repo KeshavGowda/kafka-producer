@@ -1,0 +1,20 @@
+spring:
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    producer:
+      client-id: wikimedia-producer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      client-id: wikimedia-consumer-1
+      group-id: wikimedia-consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+topic:
+  name: "message_topic"
+
+wikimedia:
+  recentchange:
+    uri: https://stream.wikimedia.org/v2/stream/recentchange
