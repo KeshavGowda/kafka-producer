@@ -16,6 +16,10 @@ import reactor.core.publisher.Flux;
 import java.time.LocalTime;
 import java.util.function.Consumer;
 
+/**
+ * This is the Kafka producer class which reads the recent changes from wikimedia recent change api and publishes
+ * them to a kafka topic
+ */
 @Component
 @Slf4j
 public class WikimediaEventProducer implements ApplicationRunner {
@@ -54,7 +58,6 @@ public class WikimediaEventProducer implements ApplicationRunner {
     }
 
     private void publishMessage(ServerSentEvent<String> content) {
-        //TODO: set message expiry and partition
         ProducerRecord<String, String> record = new ProducerRecord<>(topic, content.id(), content.data());
         kafkaTemplate.send(record);
     }
